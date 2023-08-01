@@ -1,8 +1,19 @@
+
+print("\n1\n")
+
+
 import asyncio
 import json
 import os
 import sys
 from typing import Optional
+from time import sleep
+
+# sleep for 5 seconds
+sleep(0)
+print("\n2\n")
+sleep(0)
+
 
 from nio import (
     AsyncClient,
@@ -20,6 +31,11 @@ from nio import (
     exceptions,
 )
 
+sleep(0)
+print("\n3\n")
+sleep(0)
+
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -32,8 +48,10 @@ NIO_PASSWORD = os.environ.get("NIO_PASSWORD")
 NIO_ADMINS = os.environ.get("NIO_ADMINS").split(",")
 NIO_DEVICE_IDS = os.environ.get("NIO_DEVICE_IDS").split(",")
 
-STORE_FOLDER = "nio_store/"
+STORE_FOLDER = "./nio_store/"
 SESSION_DETAILS_FILE = "credentials.json"
+
+print(HOMESERVER, ROOM_ID, NIO_USER_ID, NIO_PASSWORD, NIO_ADMINS, NIO_DEVICE_IDS, STORE_FOLDER, SESSION_DETAILS_FILE)
 
 class CustomEncryptedClient(AsyncClient):
     def __init__(
@@ -286,8 +304,8 @@ async def main():
         NIO_USER_ID,
         store_path=STORE_FOLDER,
         config=config,
-        ssl=False,
-        proxy="http://localhost:8080",
+        ssl=True,
+        # proxy="http://172.18.32.1:8080",
     )
 
     try:
